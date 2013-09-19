@@ -2,5 +2,9 @@ package com.springapp.mvc;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface FilmRepository extends JpaRepository<Film, Long> {
+import java.util.List;
+
+public interface FilmRepository {
+    Film findFilm(String title);
+    List<Film> findAll();
 }

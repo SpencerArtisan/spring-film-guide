@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class MyStepdefs {
     @Given("^I am on the films page$")
     public void I_am_on_the_films_page() throws Throwable {
-        BrowserDriver.loadPage("http://localhost:8080");
+        BrowserDriver.loadPage("http://localhost:8080/films");
     }
 
     @Then("^I see the film \"([^\"]*)\"$")
@@ -22,12 +22,12 @@ public class MyStepdefs {
 
     @Given("^I am on the home page$")
     public void I_am_on_the_home_page() throws Throwable {
-        BrowserDriver.loadPage("http://localhost:8080");
+        BrowserDriver.loadPage("http://localhost:8080/films");
     }
 
     @Then("^I see the rating (\\d+)$")
     public void I_see_the_rating_(String rating) throws Throwable {
-        assertEquals(rating, BrowserDriver.getValueById("rating"), 0.01);
+        assertEquals(rating, BrowserDriver.getValueById("rating"));
     }
 
     @When("^I enter the film name \"([^\"]*)\"$")
