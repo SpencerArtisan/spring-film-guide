@@ -2,8 +2,11 @@ package com.springapp.mvc;
 
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity(name = "movie")
+@Entity
+@XmlRootElement
+@Table(name = "FILM")
 public class Film {
     @Id
     private String title;
