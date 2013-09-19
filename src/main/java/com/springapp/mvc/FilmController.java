@@ -24,10 +24,7 @@ public class FilmController {
 
     @RequestMapping(value = "/{title}", method = RequestMethod.GET)
     public String showFilm(@PathVariable String title, ModelMap model) {
-        Film film = new Film();
-        film.setTitle(title);
-        film.setRating(3.5f);
-        model.addAttribute("film", film);
+        model.addAttribute("film", filmRepository.findFilm(title));
         return "film";
     }
 }
