@@ -16,7 +16,7 @@ public class JpaFilmRepository implements FilmRepository {
     @Transactional(readOnly = true)
     public Film findFilm(String title) {
         try {
-            String query = "select f from Film f where title = :title";
+            String query = "select f from Film f where title LIKE concat(:title,'%')";
 
             return (Film) entityManager.createQuery(query).setParameter("title", title).getSingleResult();
         } catch (NoResultException e) {

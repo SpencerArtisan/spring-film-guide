@@ -28,4 +28,11 @@ public class FilmRepositoryTests {
 		assertNotNull("No such film " + FilmTestConstants.FILM_TITLE, film);
 		assertEquals(film.getTitle(), FilmTestConstants.FILM_TITLE);
 	}
+
+    @Test
+    public void testFindFilmWithPartialTitle() throws Exception {
+        Film film = filmRepository.findFilm(FilmTestConstants.PARTIAL_FILM_TITLE);
+        assertNotNull("No such film " + FilmTestConstants.PARTIAL_FILM_TITLE, film);
+        assertEquals(film.getTitle(), FilmTestConstants.FILM_TITLE);
+    }
 }
