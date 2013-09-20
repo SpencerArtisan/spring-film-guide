@@ -21,28 +21,15 @@
     <div class="row">
         <div class="span8 offset2">
             <h1>Films</h1>
-
-            <c:if test="${!empty films}">
-                <h3>Films</h3>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Votes</th>
-                        <th>Rating</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${films}" var="film">
-                        <tr>
-                            <td>${film.title}</td>
-                            <td>${film.votes}</td>
-                            <td>${film.rating}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </c:if>
+            <form:form name="form1" method="get" action="films" commandName="film" class="form-horizontal">
+                <div class="control-group">
+                    <form:label cssClass="control-label" path="title">Title:</form:label>
+                    <div class="controls">
+                        <form:input id="film" path="title"/>
+                    </div>
+                    <a href="javascript:document.form1.submit();">Search</a>
+                </div>
+            </form:form>
         </div>
     </div>
 </div>

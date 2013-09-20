@@ -2,6 +2,7 @@ package com.springapp.mvc;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 
@@ -11,8 +12,8 @@ public class BrowserDriver {
     public synchronized static WebDriver driver() {
         if (mDriver == null) {
             try {
-//                mDriver = new FirefoxDriver();
-                mDriver = new HtmlUnitDriver();
+                mDriver = new FirefoxDriver();
+//                mDriver = new HtmlUnitDriver();
             } finally {
                 Runtime.getRuntime().addShutdownHook(
                         new Thread(new BrowserCleanup()));
@@ -22,6 +23,7 @@ public class BrowserDriver {
     }
 
     public static boolean pageContains(String text) {
+        System.out.println(driver().getPageSource());
         return driver().getPageSource().contains(text);
     }
 

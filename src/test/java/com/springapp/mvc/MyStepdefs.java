@@ -10,11 +10,6 @@ import cucumber.runtime.PendingException;
 import static org.junit.Assert.*;
 
 public class MyStepdefs {
-    @Given("^I am on the films page$")
-    public void I_am_on_the_films_page() throws Throwable {
-        BrowserDriver.loadPage("http://localhost:8080/films");
-    }
-
     @Then("^I see the film \"([^\"]*)\"$")
     public void I_see_the_film(String film) throws Throwable {
         assertTrue("Film not on page", BrowserDriver.pageContains(film));
@@ -22,12 +17,12 @@ public class MyStepdefs {
 
     @Given("^I am on the home page$")
     public void I_am_on_the_home_page() throws Throwable {
-        BrowserDriver.loadPage("http://localhost:8080/films");
+        BrowserDriver.loadPage("http://localhost:8080");
     }
 
-    @Then("^I see the rating (\\d+)$")
+    @Then("^I see the rating ([^\"]*)$")
     public void I_see_the_rating_(String rating) throws Throwable {
-        assertEquals(rating, BrowserDriver.getValueById("rating"));
+        assertTrue("Rating " + rating + " not on page", BrowserDriver.pageContains(rating));
     }
 
     @When("^I enter the film name \"([^\"]*)\"$")
@@ -38,5 +33,6 @@ public class MyStepdefs {
     @And("^Press \"([^\"]*)\"$")
     public void Press(String buttonLabel) throws Throwable {
         BrowserDriver.click(buttonLabel);
+        Thread.sleep(3000);
     }
 }
