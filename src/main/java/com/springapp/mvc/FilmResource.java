@@ -9,8 +9,8 @@ import org.apache.log4j.Logger;
 
 @Controller
 @RequestMapping("/films")
-public class FilmController {
-    private Logger logger = Logger.getLogger(FilmController.class);
+public class FilmResource {
+    private Logger logger = Logger.getLogger(FilmResource.class);
 
     @Autowired
     private FilmRepository filmRepository;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/")
-public class ApplicationController {
+public class ApplicationResource {
     @RequestMapping(method = RequestMethod.GET)
     public String listFilms(ModelMap model) {
         model.addAttribute("film", new Film());
