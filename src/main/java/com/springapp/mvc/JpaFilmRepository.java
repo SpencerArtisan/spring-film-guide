@@ -14,11 +14,11 @@ public class JpaFilmRepository implements FilmRepository {
     private EntityManager entityManager;
 
     @Transactional(readOnly = true)
-    public Film findFilm(String title) {
+    public List<Film> findFilms(String title) {
         try {
             String query = "select f from Film f where title LIKE concat(:title,'%')";
 
-            return (Film) entityManager.createQuery(query).setParameter("title", title).getSingleResult();
+            return (List<Film>) entityManager.createQuery(query).setParameter("title", title).getResultList();
         } catch (NoResultException e) {
             return null;
         }

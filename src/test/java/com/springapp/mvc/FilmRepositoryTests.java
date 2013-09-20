@@ -3,7 +3,6 @@ package com.springapp.mvc;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -24,15 +23,23 @@ public class FilmRepositoryTests {
 
 	@Test
 	public void testFindFilm() throws Exception {
-		Film film = filmRepository.findFilm(FilmTestConstants.FILM_TITLE);
-		assertNotNull("No such film " + FilmTestConstants.FILM_TITLE, film);
-		assertEquals(film.getTitle(), FilmTestConstants.FILM_TITLE);
+        List<Film> films = filmRepository.findFilms(FilmTestConstants.FILM_TITLE);
+        assertEquals(1, films.size());
+		assertEquals(films.get(0).getTitle(), FilmTestConstants.FILM_TITLE);
 	}
 
     @Test
     public void testFindFilmWithPartialTitle() throws Exception {
-        Film film = filmRepository.findFilm(FilmTestConstants.PARTIAL_FILM_TITLE);
-        assertNotNull("No such film " + FilmTestConstants.PARTIAL_FILM_TITLE, film);
-        assertEquals(film.getTitle(), FilmTestConstants.FILM_TITLE);
+        List<Film> films = filmRepository.findFilms(FilmTestConstants.PARTIAL_FILM_TITLE);
+        assertEquals(1, films.size());
+        assertEquals(films.get(0).getTitle(), FilmTestConstants.FILM_TITLE);
+    }
+
+    @Test
+    public void testFindFilmWithAmbiguousTitle() throws Exception {
+        List<Film> films = filmRepository.findFilms(FilmTestConstants.AMBIGUOUS_FILM_TITLE);
+        assertEquals(2, films.size());
+        assertEquals(films.get(0).getTitle(), FilmTestConstants.FILM_TITLE2);
+        assertEquals(films.get(1).getTitle(), FilmTestConstants.FILM_TITLE);
     }
 }

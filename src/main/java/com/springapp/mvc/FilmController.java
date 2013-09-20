@@ -1,12 +1,8 @@
 package com.springapp.mvc;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -24,7 +20,7 @@ public class FilmController {
 
     @RequestMapping(value = "/{title}", method = RequestMethod.GET)
     public String showFilm(@PathVariable String title, ModelMap model) {
-        model.addAttribute("film", filmRepository.findFilm(title));
+        model.addAttribute("film", filmRepository.findFilms(title));
         return "film";
     }
 }
